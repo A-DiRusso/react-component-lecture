@@ -4,7 +4,7 @@ export default class Widget extends Component {
   constructor(props) {
       super(props);
       this.state =  {
-        aNumber: 0
+        aNumber: props.startingValue
       }
   }
   componentDidMount() {
@@ -18,7 +18,8 @@ export default class Widget extends Component {
 
   componentWillUnmount() {
       console.log('Widget: ComponentWillUnmount')
-      clearInterval(this.interval)
+      clearInterval(this.interval);
+      this.props.saveState(this.state.aNumber);
   }
   render() {
       console.log('Widget: render')

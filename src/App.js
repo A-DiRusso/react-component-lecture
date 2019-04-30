@@ -6,7 +6,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      shouldShowWidget: false
+      shouldShowWidget: false,
+      widgetState: 0
     }
   }
   render() {
@@ -15,7 +16,7 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
         <button onClick={this._toggleShowWidget}>flip it</button>
-        {this.state.shouldShowWidget ? <Widget /> : null}
+        {this.state.shouldShowWidget ? <Widget saveState={this._saveWidgetState} startingValue={this.state.widgetState}/> : null}
      
         </header>
       </div>
@@ -24,6 +25,13 @@ class App extends React.Component {
   _toggleShowWidget = () => {
     this.setState({
       shouldShowWidget: !this.state.shouldShowWidget
+    })
+  }
+  _saveWidgetState = (widgetState) => {
+    this.setState({
+      widgetState 
+    }, () => {
+      console.log("App: _saveWidgetState")
     })
   }
 }
